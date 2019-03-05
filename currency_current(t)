@@ -1,0 +1,50 @@
+
+"""
+    作者：温文默克
+    功能：汇率转换
+    版本：3.0
+    日期：03/03/2019
+    升级功能：根据输入判断美元或是人民币，再进行转换
+    增加功能：1)程序结构化2)简单函数定义
+
+"""
+
+# def convert_currency(im,er):
+#     """
+#         汇率兑换函数
+#     """
+#     out = im*er
+#     return out
+
+def main():
+    """
+        主函数
+    """
+    # 汇率
+    usd_vs_rmb = 6.77
+    # 带单位的货币输入
+    currency_str_value = input("请输入带单位的货币金额（退出请输入Q）：")
+    while currency_str_value != 'Q':
+        unit = currency_str_value[-3:]
+        if unit == 'CNY':
+            exchange_rate = 1 / usd_vs_rmb
+        elif unit =='USD':
+            exchange_rate = usd_vs_rmb
+        else:
+            exchange_rate = -1
+            #其他情况
+        if exchange_rate != -1:
+            in_money = eval(currency_str_value[:-3])
+            #使用lamdba定义函数
+            convert_currency2 = lambda x : x * exchange_rate
+            #调用函数
+            #调用lamdba函数
+            out_money = convert_currency2(in_money)
+            #out_money = convert_currency(in_money,exchange_rate)
+            print("转换后的金额",out_money)
+        else:
+            print("不支持该种货币")
+
+        currency_str_value = input("请输入带单位的货币金额（退出请输入Q）：")
+if __name__ == '__main__':
+    main()
